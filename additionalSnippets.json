@@ -2,7 +2,7 @@
   "Create Next Arrow Function": {
     "prefix": "nafce",
     "body": [
-      "const ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page = (): JSX.Element => {",
+      "\n\nconst ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page = (): JSX.Element => {",
       "\treturn (\n\t\t<div>\n\t\t\t<h1>${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}</h1>\n\t\t</div>\n\t)\n}",
       "\nexport default ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page"
     ]
@@ -10,7 +10,7 @@
   "Blank Next Arrow Function": {
     "prefix": "nafcw",
     "body": [
-      "const $1Page = (): JSX.Element => {",
+      "\n\nconst $1Page = (): JSX.Element => {",
       "\treturn (\n\t\t<div>\n\t\t\t<h1>$1 Page</h1>\n\t\t</div>\n\t)\n}",
       "\nexport default $1Page"
     ]
@@ -18,7 +18,7 @@
   "Create Next Functional": {
     "prefix": "nfce",
     "body": [
-      "function ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page(): JSX.Element {",
+      "\n\nfunction ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page(): JSX.Element {",
       "\treturn (\n\t\t<div>\n\t\t\t<h1>${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}</h1>\n\t\t</div>\n\t)\n}",
       "\nexport default ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}Page"
     ]
