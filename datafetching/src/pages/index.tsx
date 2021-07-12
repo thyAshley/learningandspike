@@ -1,3 +1,5 @@
+import fs from "fs/promises";
+import path from "path";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 const HomePage = ({
@@ -20,9 +22,13 @@ interface ProductProps {
 }
 
 export const getStaticProps = async () => {
+  const filePath = path.join(process.cwd(), "src", "data", "dummy.json");
+  console.log(filePath);
+  const fetchedData = await fs.readFile(filePath, "utf-8");
+  const data: { products: ProductProps[] } = JSON.parse(fetchedData);
   return {
     props: {
-      products: [{ id: "p1", title: "Product 1" }],
+      products: data.products,
     },
   };
 };
