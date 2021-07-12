@@ -16,7 +16,6 @@ export interface EventProps {
 }
 
 const EventList = ({ items }: EventProps): JSX.Element => {
-  console.log(items);
   return (
     <div>
       {items.map((item) => (
