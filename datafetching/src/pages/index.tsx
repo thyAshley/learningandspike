@@ -1,6 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+  InferGetStaticPropsType,
+} from "next";
+import { ProductProps } from "../types";
 
 const HomePage = ({
   products,
@@ -16,20 +22,36 @@ const HomePage = ({
   );
 };
 
-interface ProductProps {
-  id: string;
-  title: string;
+interface StaticProps {
+  products: ProductProps[];
 }
-
-export const getStaticProps = async () => {
+export const getStaticProps = async (
+  context: GetStaticPropsContext
+): Promise<GetStaticPropsResult<StaticProps>> => {
+  console.log("Re-generating");
   const filePath = path.join(process.cwd(), "src", "data", "dummy.json");
-  console.log(filePath);
+
   const fetchedData = await fs.readFile(filePath, "utf-8");
   const data: { products: ProductProps[] } = JSON.parse(fetchedData);
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true,
+      },
+    };
+  }
+
+  if (data.products.length === 0) {
+    console.log(data.products);
+    return { notFound: true };
+  }
+
   return {
     props: {
       products: data.products,
     },
+    revalidate: 10,
   };
 };
 
