@@ -1,11 +1,11 @@
 import fs from "fs/promises";
 import path from "path";
 import {
-  GetStaticProps,
   GetStaticPropsContext,
   GetStaticPropsResult,
   InferGetStaticPropsType,
 } from "next";
+import Link from "next/link";
 import { ProductProps } from "../types";
 
 const HomePage = ({
@@ -15,7 +15,9 @@ const HomePage = ({
     <div>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <li key={product.id}>
+            <Link href={`/${product.id}`}>{product.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
